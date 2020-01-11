@@ -13,14 +13,14 @@ const hero = {
 };
 
 const enemy = {
-  name: 'Skeleton',
-  health: 6,
+  name: "Skeleton",
+  health: 8,
   heroic: false,
   weapon: {
     type: "",
-    damage: 3
+    damage: Math.floor(Math.random() * (5 - 2) + 2)
   }
-}
+};
 
 //select your hero
 function selectFemaleHero() {
@@ -33,12 +33,17 @@ function selectMaleHero() {
   document.getElementById("hero-female").style.alignContent = "center";
 }
 
+//create name
 function createName() {
   let newName = prompt("Enter your hero name");
   if (newName != null) {
     document.getElementById(
       "name"
-    ).innerHTML = `Greetings ${newName}! Ready for you fight?`;
+    ).innerHTML = `Greetings ${newName}! Ready for your fight?`;
+
+    if (newName != null) {
+      hero.name = newName;
+    }
   }
 }
 
@@ -58,11 +63,33 @@ function pickUpItem(person, weapon) {
 function equipWeapon(person) {
   if (person.inventory.length !== 0) {
     person.weapon = person.inventory[0];
+    displayStats(hero);
   }
 }
 
-function fight ()
-// function runs once selected hero
+function fight(person, otherPerson) {
+  if (!person.name) {
+    alert("Please create your hero name first");
+    return false;
+  }
+  person.health -= otherPerson.weapon.damage;
+  otherPerson.health -= person.weapon.damage;
+  displayStats(hero);
+
+  if (person.health <= 4 && person.health >= 1) {
+    alert("Your health is almost finished. Need rest");
+  }
+  if (person.health <= 0) {
+    alert("You lost!");
+  }
+
+  if (otherPerson.health <= 0) {
+    alert("You Won!");
+    document.getElementById("enemy").remove();
+  }
+}
+
+//display the hero condition
 function displayStats(person) {
   const heroCond = document.getElementById("heroCond");
 
@@ -72,11 +99,12 @@ function displayStats(person) {
   const weaponDamage = document.createElement("div");
 
   heroHealth.innerHTML = `Health: ${person.health}`;
-  weaponType.innerHTMl = `Weapon Type: ${person.weapon.type}`;
+  weaponType.innerHTML = `Weapon Type: ${person.weapon.type}`;
   weaponDamage.innerHTML = `Weapon Damage: ${person.weapon.damage}`;
 
   heroCond.appendChild(heroHealth);
   heroCond.appendChild(weaponType);
   heroCond.appendChild(weaponDamage);
 }
+
 displayStats(hero);

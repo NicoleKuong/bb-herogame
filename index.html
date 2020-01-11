@@ -18,13 +18,13 @@
         <h3>Select your hero:</h3>
         <img
           id="hero-male"
-          onclick="selectMaleHero(); heroInfo(hero)"
+          onclick="selectMaleHero(); "
           src="images/hero_male.png"
           alt="A male hero"
         />
         <img
           id="hero-female"
-          onclick="selectFemaleHero(); heroInfo(hero)"
+          onclick="selectFemaleHero();"
           src="images/hero_female.png"
           alt="A female hero"
         />
@@ -38,35 +38,40 @@
       <section class="hero-add-ons">
         <img
           id="inn"
-          onclick="rest(hero); displayStats(hero)"
+          onclick="rest(hero); displayStats(hero);"
           src="images/inn.png"
           alt="A wooden house"
+          title="Restore Health"
         />
 
         <img
           id="dagger"
           onclick="pickUpItem(hero,{'type':'dagger',
-        'damage' : 2}); displayStats(hero) "
+        'damage' : 2});"
           src="images/dagger.png"
           alt="A dagger"
+          title="Pick up weapon"
         />
 
         <img
           id="bag"
-          onclick="equipWeapon(hero); displayStats(hero)"
+          onclick="equipWeapon(hero);"
           src="images/box.png"
           alt="A wooden box"
+          title="Equip"
         />
       </section>
 
-      <!-- <img id="board" src="images/wooden board.png" alt="A wood board" /> -->
-      <section id="heroCond">
-        <h2>Hero Condition</h2>
-      </section>
+      <h2>Hero Condition</h2>
+      <section id="heroCond"></section>
 
       <section>
         <h2>Enemy</h2>
-        <img id="enemy" onclick="" src="images/monster2.png" />
+        <img
+          id="enemy"
+          onclick="fight(hero, enemy)"
+          src="images/monster2.png"
+        />
       </section>
     </main>
 
