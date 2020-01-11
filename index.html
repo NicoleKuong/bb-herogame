@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mocha Tests</title>
+    <link href="lib/mocha.css" rel="stylesheet" />
+    <link href="index.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Rye&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- 👍 YOUR HTML HERE 👍 -->
+    <main>
+      <h1>Hero Game</h1>
+
+      <section>
+        <h3>Select your hero:</h3>
+        <img
+          id="hero-male"
+          onclick="selectMaleHero(); heroInfo(hero)"
+          src="images/hero_male.png"
+          alt="A male hero"
+        />
+        <img
+          id="hero-female"
+          onclick="selectFemaleHero(); heroInfo(hero)"
+          src="images/hero_female.png"
+          alt="A female hero"
+        />
+      </section>
+
+      <button id="namebutton" onclick="createName()">
+        Create your hero's name
+      </button>
+      <div id="name"></div>
+
+      <section class="hero-add-ons">
+        <img
+          id="inn"
+          onclick="rest(hero); displayStats(hero)"
+          src="images/inn.png"
+          alt="A wooden house"
+        />
+
+        <img
+          id="dagger"
+          onclick="pickUpItem(hero,{'type':'dagger',
+        'damage' : 2}); displayStats(hero) "
+          src="images/dagger.png"
+          alt="A dagger"
+        />
+
+        <img
+          id="bag"
+          onclick="equipWeapon(hero); displayStats(hero)"
+          src="images/box.png"
+          alt="A wooden box"
+        />
+      </section>
+
+      <!-- <img id="board" src="images/wooden board.png" alt="A wood board" /> -->
+      <section id="heroCond">
+        <h2>Hero Condition</h2>
+      </section>
+
+      <section>
+        <h2>Enemy</h2>
+        <img id="enemy" onclick="" src="images/monster2.png" />
+      </section>
+    </main>
+
+    <!-- I RECOMMEND YOU LEAVE THE REST UNTOUCHED -->
+    <button onclick="mocha.checkLeaks(); mocha.run();">Run the tests!</button>
+
+    <div id="mocha">
+      <!-- MOCHA TEST FEEDBACK WILL BE RENDERED HERE -->
+    </div>
+
+    <script src="lib/chai.js"></script>
+    <script src="lib/mocha.js"></script>
+    <script src="lib/sinon.js"></script>
+    <script>
+      mocha.setup("bdd");
+    </script>
+    <script src="YOUR_JAVASCRIPT_HERE.js"></script>
+    <script src="lib/game_logic.test.js"></script>
+  </body>
+</html>
