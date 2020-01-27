@@ -93,6 +93,9 @@ function fight(person, otherPerson) {
 function displayStats(person) {
   const heroCond = document.getElementById("heroCond");
 
+  while (heroCond.firstChild) {
+    heroCond.removeChild(heroCond.firstChild);
+  }
   //create elements on browse
   const heroHealth = document.createElement("div");
   const weaponType = document.createElement("div");
